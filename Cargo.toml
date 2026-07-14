@@ -1,0 +1,32 @@
+[package]
+name = "odroid-go-rs"
+version = "1.0.0"
+edition = "2021"
+license = "GPL-3.0"
+
+[lib]
+crate-type = ["lib"]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[dependencies]
+esp-idf-hal = { version = "0.45", features = ["experimental", "adc-oneshot-legacy"] }
+log = "0.4"
+anyhow = "1"
+
+[features]
+audio = []
+display = []
+font = []
+keypad = []
+sdcard = []
+
+[build-dependencies]
+embuild = { version = "0.31", features = ["espidf"] }
